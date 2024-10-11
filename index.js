@@ -5,8 +5,13 @@ const cors = require('cors')
 // db connection
 const dbConnection = require('./api/db/dbConnection')
 
-// app
-const app = express();
+// socket
+const {
+    app,
+    server
+} = require('./api/socket/socketIo')
+
+
 
 // port
 const PORT = process.env.PORT || 5000;
@@ -22,7 +27,7 @@ app.use(cors({
 // routes
 app.use('/api/notes',require('./api/routes/notesRoutes'))
 
-app.listen(PORT, async(err) => {
+server.listen(PORT, async(err) => {
     if(err){
         throw err
     }
